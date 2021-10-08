@@ -31,4 +31,3 @@ Arrival Airport = [Airport NAme]		Return Date: [date]	 	Time [time]
 ラボチャレンジを正確に完了した最初の3人の出席者(適切な旅程を示すクライアントとWebアプリケーションのスクリーンショットの提出を含む)は、賞品としてAirPodsのペアが送信されます。Couchbaseの代表者は、各賞品受取人に直接メッセージを通して、郵送先住所を要求します。
 
 
-![image](https://user-images.githubusercontent.com/26536541/136496121-725b2a1a-1c19-4c06-8ede-6dad3997c138.png)
