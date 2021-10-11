@@ -16,7 +16,7 @@ Sync Gatewayはチャネルを使用して、多数のユーザー間でデー�
 
 で同期Gatewayインストールのセクション、我々は特定の設定ファイルと同期ゲートウェイを起動する手順を説明しました。
 
-https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-config-travelsample.jsonにあるsync-gateway-config-travelsample.jsonファイルを開きます。これには、sync functionソースコードがSyncGatewayのデータベース構成ファイルに保存されているJavaScript関数が含まれています。
+`https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-config-travelsample.json`にある`sync-gateway-config-travelsample.json`ファイルを開きます。これには、sync functionソースコードがSync Gatewayのデータベース構成ファイルに保存されているJavaScript関数が含まれています。
 
 ```JAVASCRIPT
 /* Routing */
@@ -25,14 +25,14 @@ channel("channel." + username);
 ```
 
 ### 共有バケットアクセス
-このレッスンを開始する前に、Sync Gatewayのインストールセクションの手順に従って、SyncGatewayが稼働していることを確認してください。
+このレッスンを開始する前に、Sync Gatewayのインストールセクションの手順に従って、Sync　Gatewayが稼働していることを確認してください。
 
-Sync Gateway1.5およびCouchbaseServer 5.0以降、モバイルアプリケーションとサーバー/ Webアプリケーションは同じバケットに対して読み取りと書き込みを行うことができるようになりました。これは、SyncGateway構成ファイルで有効にできるオプトイン機能です。
+Sync Gateway1.5およびCouchbaseServer 5.0以降、モバイルアプリケーションとサーバー/ Webアプリケーションは同じバケットに対して読み取りと書き込みを行うことができるようになりました。これは、Sync　Gateway構成ファイルで有効にできるオプトイン機能です。
 
 収束
 1.5より前は、モバイルクライアントとのレプリケーションにSync Gatewayで使用される同期メタデータは、_syncプロパティの一部としてドキュメントに含まれていました。1.5では、同期メタデータは、ドキュメントに関連付けられた拡張属性またはXAttrsに移動されます。
 
-この機能は、同期ゲートウェイ構成ファイルの構成設定を通じて有効にできます。Sync Gateway2.7のEnterpriseEditionを使用している場合、「import_docs」フラグはオプションであることに注意してください。「enable_shared_bucket_access」が「true」に設定されているすべてのノードは、サーバーバケットからドキュメントの変更を自動的にインポートします。
+この機能は、同期ゲートウェイ構成ファイルの構成設定を通じて有効にできます。Sync Gateway2.7のEnterpriseEditionを使用している場合、「`import_docs`」フラグはオプションであることに注意してください。「`enable_shared_bucket_access`」が「`true`」に設定されているすべてのノードは、サーバーバケットからドキュメントの変更を自動的にインポートします。
 
 https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-config-travelsample.jsonにあるsync-gateway-config-travelsample.jsonファイルを開きます
 
@@ -41,7 +41,7 @@ https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-c
 "enable_shared_bucket_access": true
 ```
 
-インポートフィルター機能を定義することにより、SyncGatewayでインポートおよび処理する必要のあるCouchbaseServerドキュメントを指定できます。このデモでは、「ユーザー」ドキュメントのみを同期します。したがって、他のすべてのドキュメントタイプは無視されます。
+インポートフィルター機能を定義することにより、Sync Gatewayでインポートおよび処理する必要のあるCouch baseServerドキュメントを指定できます。このデモでは、「user」ドキュメントのみを同期します。したがって、他のすべてのドキュメントタイプは無視されます。
 
 ```JAVASCRIPT
 function(doc) {
@@ -68,7 +68,7 @@ Couchbase Mobile 2.xレプリケーションプロトコルは、WebSocket上に
 
 レプリケーション20
 
-レプリケーションプロセスは、「継続的」または「ワンショット」にすることができます。
+レプリケーションプロセスは、「`continuous`(継続的)」または「ワンショット」にすることができます。
 
 「継続的」レプリケーションモードでは、変更はクライアントと同期ゲートウェイの間でリアルタイムで継続的に同期されます。
 
@@ -85,7 +85,7 @@ public static void startPushAndPullReplicationForCurrentUser(String username, St
 }
 ```
 
-まず、URL同期するSyncGatewayインスタンスを指すオブジェクトを初期化します。
+まず、URを指定してL同期するSyncGatewayインスタンスを指すオブジェクトを初期化します。
 
 ```JAVA
 public static String mSyncGatewayEndpoint = "ws://10.0.2.2:4984/travel-sample";
@@ -97,7 +97,8 @@ try {
 }
 ```
 
-次に、レプリケーションを構成します。ReplicatorConfigurationSyncのゲートウェイ上のターゲットDBのローカルデータベースとURLで初期化されます。replicatorTypeReplicator Configのは、レプリケーションのタイプを指定します。TravelアプリのコードスニペットではpushAndPull、プッシュレプリケーションとプルレプリケーションの両方が有効になっていることを示しています。continuousモードがに設定されているtrueトラベルアプリで。
+次に、レプリケーションを構成します。`ReplicatorConfigurationSync`のゲートウェイ上のターゲットDBのローカルデータベースとURLで初期化されます。`replicatorTypeReplicator Config`のは、レプリケーションのタイプを指定します。
+Travelアプリのコードスニペットでは`pushAndPull`であり、プッシュレプリケーションとプルレプリケーションの両方が有効になっていることを示しています。`continuous`モードがに設定されている`true`トラベルアプリで。
 
 
 ```JAVA
@@ -145,7 +146,7 @@ replicator.start();
 ```
 
 ### 試してみてください（プッシュレプリケーション）
-- Travel Sample Mobileアプリに「デモ」ユーザーとしてログインし、パスワードを「パスワード」としてログインします。このユーザーは、旅行サンプルWebバックエンドを介して作成する必要があります。
+- Travel Sample Mobileアプリに「demo」ユーザーとしてログインし、パスワードを「password」としてログインします。このユーザーは、旅行サンプルWebバックエンドを介して作成する必要があります。
 
 - 「航空会社」ボタンをタップして、フライトを予約します。「出発地」と「目的地」の両方の空港とフライト日はすでに設定されています。
 
@@ -154,7 +155,7 @@ replicator.start();
 - フライトのリストから、最初のフライトリストを選択します。これにより、予約が自動的に確認されます。
 
 
-- Travel Sample PythonWebアプリにアクセスします。URLはhttp：// localhost：8080になります。クラウドベースのインストールを行った場合localhostは、URLをWebアプリのクラウドインスタンスのIPアドレスに置き換えてください。
+- Travel Sample Python Webアプリにアクセスします（URLは http：//localhost：8080）。クラウドベースのインストールを行った場合localhostは、URLをWebアプリのクラウドインスタンスのIPアドレスに置き換えてください。
 
 - パスワードを「password」として、「demo」ユーザーとしてWebアプリにログインします。
 
@@ -164,7 +165,7 @@ replicator.start();
 
 
 ### 試してみてください（プルレプリケーション）
-- Travel Sample PythonWebアプリにアクセスします。URLはhttp：// localhost：8080になります。クラウドベースのインストールを行った場合localhostは、URLをWebアプリのクラウドインスタンスのIPアドレスに置き換えてください。
+- Travel Sample PythonWebアプリにアクセスします（URLはhttp：//localhost：8080）。クラウドベースのインストールを行った場合localhostは、URLをWebアプリのクラウドインスタンスのIPアドレスに置き換えてください。
 
 - パスワードを「password」として、「demo」ユーザーとしてWebアプリにログインします。
 
