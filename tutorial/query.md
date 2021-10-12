@@ -61,11 +61,12 @@ mSearchView.showAirports(data, tag);
 ```
   
 ### やってみよう
-- Travel Sample Mobileアプリに「デモ」ユーザーとしてログインし、パスワードを「パスワード」としてログインします
+- Travel Sampleモバイルアプリに「demo」ユーザーとしてログインし、パスワードを「password」としてログインします
 - 「フライト」ボタンをタップしてフライトを予約します
 - 「From」空港のテキストフィールドに「Detroit」と入力します
 - ドロップダウンリストの最初の項目が「DetroitMetroWayneCo」であることを確認します
 
+![](https://cl.ly/0b3q2T2t1R1J/android-simple-query.gif)
 
 ### 高度なクエリ
   
@@ -112,7 +113,7 @@ Expression hotelsExpr = Expression.property("hotels").from("bookmarkDS");
 Expression hotelIdExpr = Meta.id.from("hotelDS");
 ```
 
-次に、関数式を使用して、\_idプロパティがhotels配列内にあるドキュメントを検索します。そして、結合式を作成します。
+次に、関数式を使用して、`_id`プロパティが`hotels`配列内にあるドキュメントを検索します。そして、結合式を作成します。
 
 ```java
 Expression joinExpr = ArrayFunction.contains(hotelsExpr, hotelIdExpr);
@@ -164,7 +165,7 @@ try {
 
 ### やってみよう
 
-- 「ゲストとして続行」を選択して、「ゲスト」ユーザーとして旅行サンプルモバイルアプリにログインします
+- 「ゲストとして続行」を選択して、「guest」ユーザーとして旅行サンプルモバイルアプリにログインします
 - 「ホテル」ボタンをタップ
 - [場所]テキストフィールドに「ロンドン」と入力します
 - 「説明」テキストフィールドに「ペット」と入力します
@@ -172,3 +173,6 @@ try {
 - タップしてホテルを「ブックマーク」します
 - ノボテルホテルが「BookmarksActivity」ページのリストに表示されていることを確認します
 
+![](https://cl.ly/3r243s1K2600/android-advanced-query.gif)
+
+[目次へ戻る](./README.md)
