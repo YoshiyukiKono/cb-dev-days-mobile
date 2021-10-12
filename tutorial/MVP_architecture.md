@@ -16,3 +16,6 @@ Android Studioプロジェクトでは、コードは機能ごとに構造化さ
 
 このチュートリアルでは、Couchbase Lite 2.0 APIのさまざまな機能を紹介するために、様々なプレゼンターのコードをウォークスルーします：
 `BookmarksPresenter.java`、`HotelsPresenter.java`、`SearchFlightPresenter.java`と`BookingsPresenter.java`。
+
+
+[目次へ戻る](./README.md)
