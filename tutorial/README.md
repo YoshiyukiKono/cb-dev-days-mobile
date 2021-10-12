@@ -15,7 +15,7 @@ Andoroidエミュレーターの場合、ローカルホストへの接続に用
 1. [アプリケーションのセットアップ](installation.md)
 1. [データモデリング](data_modeling.md)
 1. [MVPアーキテクチャー](MVP_architecture.md)
-1. [基本](basics.md)
+1. [データベース操作の基本](basics.md)
 1. [セキュリティ](security.md)
 1. [Couchbase Serverとの同期](sync.md)
 1. [プレビルドデータベースの利用](pre-built_database.md)
