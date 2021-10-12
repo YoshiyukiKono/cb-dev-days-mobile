@@ -12,8 +12,6 @@ https://docs.couchbase.com/tutorials/mobile-travel-sample/csharp/installation/tr
 Andoroidエミュレーターの場合、ローカルホストへの接続に用いるIPアドレスは、「10.0.2.2」になります。
 
 ## 目次
-
-# 目次
 1. [アプリケーションのセットアップ](installation.md)
 1. [データモデリング](data_modeling.md)
 1. [MVPアーキテクチャー](MVP_architecture.md)
