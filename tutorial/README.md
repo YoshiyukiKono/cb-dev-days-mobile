@@ -4,7 +4,7 @@ https://docs.couchbase.com/tutorials/mobile-travel-sample/csharp/installation/tr
 
 ## 注意点
 
-本演習では、プログラミング自体は含まれません。
+本演習では、具体的な処理の実装をプログラミングすることは行いません。
 
 アプリケーションが実行できるようになったら、ソースコードを参照しながら、対応する挙動を確認していきます。
 
