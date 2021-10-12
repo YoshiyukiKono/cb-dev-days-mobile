@@ -22,43 +22,47 @@
 
 
 #### プログラミング言語
+
+[チュートリアル](https://docs.couchbase.com/tutorials/mobile-travel-sample/introduction.html)では、下記の言語がサポートされています。
+
 - Android Java
 - Swift
 - C#
+- Java
+
+演習では、基本的に、Android Javaを用いるものとします（実務との関係で他のプログラミング言語の利用を希望される場合は、[チュートリアル](https://docs.couchbase.com/tutorials/mobile-travel-sample/introduction.html)に基づいて実施することも可能です）。
 
 ### Couchbase Server　/ Sync Gateway 環境構築
 
-本ワークショップでは、ご自分のローカル環境で、Dockerを用いて、Couchbase Serverを導入・環境設定する方法と、
+本ワークショップでは、基本的には、ワークショップ終了後もご利用いただけるように、ご自身のローカル環境でCouchbase Serverを動作させる事を想定しています。
 講師が準備した、AWS上の環境設定済みのCouchbase Serverへアクセスする方法の二通りから選択することが可能です。
-（基本的には、ワークショップ終了後もご利用いただけるように、ご自身のローカル環境でCouchbase Serverを動作させる事を想定しています）
 
-前者を選択される場合は、[こちら](./docs)の手順に従って、実行してください（この環境構築手順は、ブラウザでの参照用に作られています）。
+[こちら](./setup)の手順に従って、実行してください（この環境構築手順は、ブラウザでの参照用に作られています）。
 
-※注意：演習で利用するファイル（データやスクリプト）は、本サイトから個別にダウンロードするのではなく、リポジトリ全体をローカル環境に取得（`git clone`またはzipファイルダウンロード）した上でご利用ください。ファイル単位でダウンロードした場合、正しく動作しない場合のあることが確認されています。
+チュートリアル用に公開されている、Dockerによる自動セットアップを用いて、データやユーザーがセットアップ済みの環境を構築します。
 
-### アプリケーション環境構築および実装
+下記の3つのDockerイメージを用います。
 
-TODO [labs](./labs)ディレクトリに格納されているPDF資料に従って、演習を実施してください。
+- Couchbase Server
+- Sync Gateway
+- REST API Server(Python)
 
 ### モバイル開発
 
 ラボの目的は、モバイル開発者が自分のマシンを使用してアプリをデプロイして実行できるようにすることです。具体的な前提条件を以下に示します。
 
-
 このラボは、既にこれらの環境に精通しているモバイル開発者を対象としています。以下のデスクトップの前提条件は、各ツールの特定のデスクトップ要件の詳細です。
-
-
-## デスクトップの要件
-
-
 
 ### Androidの前提条件
 
 -	Google デベロッパー サイトからダウンロード可能な Android スタジオ (4.x+) の最新バージョン
 -	APIレベル22以上を実行しているAndroidデバイスまたはエミュレータ
 -	Android SDK 29
--	Android ビルドツール29 +
+-	Android ビルドツール29+
 -	JDK 8
+
+演習では、基本的に、Android Javaを用いるものとします。
+実務との関係で他のプログラミング言語の利用を希望される場合は、以下の前提条件を参照してください。
 
 ### Swift前提条件
 -	Xcode 12.4+: Mac App Storeからダウンロード可能な最新バージョン.
@@ -67,12 +71,10 @@ TODO [labs](./labs)ディレクトリに格納されているPDF資料に従っ�
 要件は、使用しているプラットフォームに基づいています。Xamarin の場合は、Visual Studio、Xamarin、およびプラットフォームのドキュメントに従ってください。
 
 #### Visual Studio (Xamarinフォームcsharpに必要)
-●	visualstudio.comからダウンロード可*
-o	2019 年のビジュアル スタジオ (16.9.4 以降)
-o	Mac 用の Visual Studio 2019 (v8.9 以降) – 注: Mac 用の Visual Studio は UWP プロジェクトをサポートしていません。
+visualstudio.comからダウンロード可
 
-#### [Javaの前提条件は、確認された時点でここにコピーする必要があります]
-
+- Visual Studio (16.9.4 以降)
+- Mac 用の Visual Studio 2019 (v8.9 以降) – 注: Mac 用の Visual Studio は UWP プロジェクトをサポートしていません。
 
 ##### Windowsユーザー
 Windows で開発している場合は、バージョン 1809 以降の Windows 10 コンピューターを使用することをお勧めします。
@@ -95,5 +97,16 @@ Android の開発のために、Xamarin は常に最新の Android SDK をイン
 
 #### Xamarinホットリローデッド
 ホットリローデッドを使用するには、iOS v14またはAndroid 10以上をターゲットにすることを強くお勧めします。完全なドキュメントは、マイクロソフトのドキュメント サイト https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/hot-reload にあります。
+
+#### Java開発
+
+- SDK8
+
+任意のIDEを使用できますが、チュートリアルではIntelliJIDEAを使用しています。
+
+- JetbrainsDeveloperサイトからダウンロード可能なIntelliJIDEA2019以降。コミュニティ版で十分です。
+
+
+
 
 
