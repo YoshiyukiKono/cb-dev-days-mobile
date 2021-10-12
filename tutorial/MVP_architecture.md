@@ -7,15 +7,20 @@
 
 Android Studioプロジェクトでは、コードは機能ごとに構造化されています。左側のナビゲーターでAndroidオプションを選択して、パッケージごとにファイルを表示できます。
 
-左ナビゲーター
+![](https://cl.ly/1h080V1V2g2j/left-navigator.png)
+
 各パッケージには、3つの異なるファイルが含まれています。
 
 - Activity：すべてのビューロジックが存在する場所です。
 - Presenter：データをフェッチしてWebサービスまたは組み込みのCouchbaseLiteデータベースに永続化するためのすべてのビジネスロジックが存在する場所です。
 - Contract：PresenterとがActivityが実装するインターフェース。
 
-このチュートリアルでは、Couchbase Lite 2.0 APIのさまざまな機能を紹介するために、様々なプレゼンターのコードをウォークスルーします：
-`BookmarksPresenter.java`、`HotelsPresenter.java`、`SearchFlightPresenter.java`と`BookingsPresenter.java`。
+このチュートリアルでは、Couchbase Lite 2.0 APIのさまざまな機能を紹介するために、以下のプレゼンターのコードをウォークスルーします：
+
+- `BookmarksPresenter.java`
+- `HotelsPresenter.java`
+- `SearchFlightPresenter.java
+- BookingsPresenter.java`。
 
 
 [目次へ戻る](./README.md)
