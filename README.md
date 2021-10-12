@@ -13,7 +13,7 @@
 ### 概要
 本ワークショップのラボは、公開されているチュートリアル（[Couchbase Mobile Workshop](https://docs.couchbase.com/tutorials/mobile-travel-sample/introduction.html)）の内容に基づきます。
 
-[こちら](./tutorials/README.md){:target="_blank"}で、日本語化(抜粋)を参照することができます。
+[こちら](./tutorial)で、日本語化(抜粋)を参照することができます。
 
 #### Couchbaseプロダクト
 - Couchbase Server 6.5
