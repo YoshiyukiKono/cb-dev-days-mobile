@@ -19,8 +19,8 @@ Android Studioプロジェクトでは、コードは機能ごとに構造化さ
 
 - `BookmarksPresenter.java`
 - `HotelsPresenter.java`
-- `SearchFlightPresenter.java
-- BookingsPresenter.java`。
+- `SearchFlightPresenter.java`
+- `BookingsPresenter.java`
 
 
 [目次へ戻る](./README.md)
