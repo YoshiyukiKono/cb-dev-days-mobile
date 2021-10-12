@@ -1,7 +1,7 @@
 ## 全文検索
 ### 全文検索
 Couchbase Lite 2.0は、全文検索（FTS）をサポートするようになりました。FTSは、`match`クエリを使用して実行されます。
-FTSの一致はケースセンシティブです。旅行アプリでは、FTSクエリは、アプリで事前に作成されたローカルの「旅行サンプル」ドキュメントに対して行われます。
+FTSの一致はケースセンシティブです。旅行アプリでは、FTSクエリは、アプリで事前に作成されたローカルの「travel-sample」ドキュメントに対して行われます。
 
 FTSクエリを実行するには、FTSインデックスを作成する必要があります。
 
@@ -40,7 +40,9 @@ public void queryHotels(String location, String description) {
 Database database = DatabaseManager.getDatabase();
 ```
 
-次に、演算子Expressionsを使用してFTSを作成しますmatch()。この特定の例では、match式desciptionStrはdescriptionプロパティ内の値を検索します。このmatch式は、論理的にANDさequalToを探し比較式locationでcountry、city、stateまたはaddressプロパティ。この式はwhere、通常の方法でクエリの句で使用されます。
+次に、`match()`オペレーターを使って、`FullTextExpression`を作成します。この例では、`match`式は`description`プロパティ内の値から`desciptionStr`を検索します。
+この`match`式は、`country`、`city`、`state`または`address`プロパティから、`location`を探す`like`比較式と、論理的に`AND`で結合されます。
+この式は、通常の方法でクエリの`where`句で使用されます。
 
 ```JAVA
 Expression descExp = FullTextExpression.index("descFTSIndex").match(description) ;
@@ -62,7 +64,7 @@ Query hotelSearchQuery = QueryBuilder
 );
 ```
 
-上記のさまざまな式を使用してクエリを作成ResultSetし、List<Map<String, Object>>オブジェクトをに渡されるオブジェクトに変換しますRecyclerView。
+上記のさまざまな式を使用してクエリを作成`ResultSetし、List<Map<String, Object>>`オブジェクトをに渡されるオブジェクトに変換します`RecyclerView`。
 
 ```JAVA
 ResultSet rows = null;
@@ -85,9 +87,12 @@ mHotelView.showHotels(data);
 ```
 
 ### やってみよう
-- Travel Sample Mobileアプリに「デモ」ユーザーとしてログインし、パスワードを「パスワード」としてログインします
+- Travel Sample Mobileアプリに「demo」ユーザーとしてログインし、パスワードを「password」としてログインします
 - 「ホテル」ボタンをタップします
-- 説明テキストフィールドに「 `ペット」と入力します。
-- [場所]テキストフィールドに「ロンドン」と入力します
-- 「ノボテルロンドンウエスト」という名前のホテルが1つリストされていることを確認します
+- 説明テキストフィールドに「pet」と入力します。
+- [場所]テキストフィールドに「London」と入力します
+- 「Novotel London West」という名前のホテルが1つリストされていることを確認します
 
+![](https://cl.ly/3r243s1K2600/android-advanced-query.gif)
+
+[目次へ戻る](./README.md)
