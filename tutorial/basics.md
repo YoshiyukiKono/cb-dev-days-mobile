@@ -1,6 +1,9 @@
-## 基礎
+## データベース操作の基本
+
+## データベース操作の基本
 ### 初期化
-開始するには、関連するアプリケーションコンテキストでCouchbaseLiteを初期化する必要があり ます DatabaseManager.java。ファイルを開きます。 DatabaseManager.java
+データベースの利用を開始するには、関連するアプリケーションコンテキストでCouchbase Liteを初期化する必要があります。 確認のため、`DatabaseManager.java`ファイルを開きます。 
+
 
 ```JAVA
   public void initCouchbaseLite(Context context) {
@@ -9,8 +12,10 @@
   }
 ```
 
-### データベースを作成する
-デバイス上で作成または開くことができるデータベースの数に制限はありません。データベースはドキュメントの名前空間と考えることができ、同じアプリで複数のデータベースを使用できます（アプリのユーザーごとに1つのデータベースが一般的なパターンです）。
+### データベース作成
+
+デバイス上で作成またはオープンすることができるデータベースの数に制限はありません。
+データベースはドキュメントの名前空間と考えることができ、同じアプリで複数のデータベースを使用できます（アプリのユーザーごとに1つのデータベースが一般的なパターンです）。
 
 以下のスニペットは、guestという名前のディレクトリにユーザー用の空のデータベースを作成しますguest。
 
@@ -87,7 +92,8 @@ public void bookmarkHotels(Map<String, Object> hotel) {
 Database database = DatabaseManager.getDatabase();
 ```
 
-次のスニペットは、ホテルインスタンス（Map<String, Object>）をDocumentデータベース内の新しいものとして永続化します。これにより、オフラインでブックマークされたホテルのドキュメントにアクセスできるようになります。
+次のスニペットは、「ホテル」ドキュメントのインスタンス（インスタンスのは、キーと、JSONドキュメントに対応する`Map<String, Object>`構造を持ちます）をデータベース内の新しいドキュメントとして永続化します。
+これにより、オフラインでブックマークされたホテルのドキュメントにアクセスできるようになります。
 
 ```JAVA
 MutableDocument hotelDoc = new MutableDocument((String) hotel.get("id"), hotel);
@@ -98,22 +104,22 @@ try {
 }
 ```
 
-次に、IDを持つドキュメントを取得するか、user::guest存在しない場合は作成します。ドキュメントは、typeプロパティをに設定し、ブックマークされたホテルのドキュメントIDを格納するbookmarkedhotelsための新しいhotels配列を使用して作成されます。
+次に、IDを持つドキュメントを取得するか、存在しない場合は作成します（ID/キー：`user::guest`）。
+ドキュメントは、`type`プロパティを「`"bookmarkedhotels"`」に設定し、ブックマークされたホテルのドキュメントIDを格納するのための新しい`hotels`配列を作成されます。
 
 ```JAVA
-Document document = database.getDocument("user::guest");
-MutableDocument mutableCopy = null;
 if (document == null) {
-	HashMap<String,Object> properties = new HashMap();
-	properties.put(type, bookmarkedhotels);
-	properties.put(hotels, new ArrayList());
-	mutableCopy = new MutableDocument(user::guest, properties);
-} else {
-	mutableCopy = document.toMutable();
+    HashMap<String, Object> properties = new HashMap<>();
+    properties.put("type", "bookmarkedhotels");
+    properties.put("hotels", new ArrayList<>());
+    mutableCopy = new MutableDocument("user::guest", properties);
+}
+else {
+    mutableCopy = document.toMutable();
 }
 ```
 
-次に、選択したホテルのIDがhotelsアレイに追加されます。
+次に、選択したホテルのIDが`hotels`配列に追加されます。
 
 ```JAVA
 MutableArray hotels =  mutableCopy.getArray(hotels).toMutable();
@@ -131,19 +137,21 @@ try {
 ```
 
 #### やってみよう
-ゲストユーザーとして、「ホテル」ボタンをタップします。
+- ゲストユーザーとして、「ホテル」ボタンをタップします。
 
-「場所」のテキストフィールドに、「ロンドン」と入力し始めたかのように「L」を入力します。ホテルのリストが表示されます。
+- 「場所」のテキストフィールドに、「ロンドン」と入力し始めたかのように「L」を入力します。ホテルのリストが表示されます。
 
-ホテルのリストは、Travel Sample Web ServicesAPIを介してCouchbaseServerから取得されます。Python Webアプリへの接続が開いていて、全文検索インデックスがCouchbase Serverで作成されていない限り、検索結果は表示されません。
+- ホテルのリストは、Travel Sample Web ServicesAPIを介してCouchbaseServerから取得されます。Python Webアプリへの接続が開いていて、全文検索インデックスがCouchbase Serverで作成されていない限り、検索結果は表示されません。
 
-最初のホテルのセルをタップしてブックマークします。
+- 最初のホテルのセルをタップしてブックマークします。
 
-「BookmarksActivity」画面にブックマークされたホテルが表示されていることを確認します。ブックマークされたホテルごとに個別のドキュメントを用意する動機は、同期機能を介してユーザー間でドキュメントを共有できるようになるかどうかです。
+- 「BookmarksActivity」画面にブックマークされたホテルが表示されていることを確認します。ブックマークされたホテルごとに個別のドキュメントを用意する動機は、同期機能を介してユーザー間でドキュメントを共有できるようになるかどうかです。
 
-アンドロイド保存ドキュメント
+![](https://cl.ly/1t38050A1T40/android-save-doc.gif)
+
 ### ドキュメントを削除する
-このdelete方法を使用して、ドキュメントを削除できます。この操作はtombstoned、削除を他のクライアントに伝播するために、実際に新しいリビジョンを作成します。
+
+`delete`メソッドを使用して、ドキュメントを削除できます。この操作は、削除を他のクライアントに伝播するために、実際には、`tombstone`(墓石)としてマークされた新しいリビジョンを作成します。
 
 `app/src/android/java/…/bookmarks/BookmarksPresenter.java`ファイルを開きます。`removeBookmark(Map<String, Object> bookmark)`メソッドを確認します。
 
@@ -157,7 +165,7 @@ public void removeBookmark(Map<String, Object> bookmark) {
 ```
 
 ゲストモードでホテルを検索すると、アプリはGETリクエストをPython Webアプリに送信し、Python WebアプリはCouchbase Serverで全文検索クエリを実行します。
-次に、ホテルがブックマークされている場合、オフラインアクセスのためにCouchbaseLiteデータベースに挿入されます。したがって、ユーザーがホテルのブックマークを解除するときは、ドキュメントをデータベースから削除する必要があります。それが以下のコードが行っていることです。
+次に、ホテルがブックマークされている場合、オフラインアクセスのためにCouchbase　Liteデータベースに挿入されます。したがって、ユーザーがホテルのブックマークを解除するときは、ドキュメントをデータベースから削除する必要があります。それが以下のコードが行っていることです。
 
 ```JAVA
 Database database = DatabaseManager.getDatabase();
@@ -169,11 +177,12 @@ try {
 }
 ```
 
-上記のようにタイプ「hotel」のドキュメントを削除することに加えて、ブックマーク解除プロセスはhotels「bookmarkedhotels」ドキュメントの配列からホテルIDを削除します。
+タイプ「hotel」のドキュメントを削除することに加えて、ブックマーク解除プロセスは「bookmarkedhotels」ドキュメントの配列「hotels」からホテルIDを削除します。
 
 #### やってみよう
-最初のホテルセルを左にスワイプして、セルのブックマークを解除/削除します
 
-リストに1つのホテルが表示されていることを確認します
+- 「ホテル」セルを左にスワイプして、セルのブックマークを解除/削除します。
 
-android unbookmark
+![](https://cl.ly/0A0D363w3R1g/android-unbookmark.gif)
+
+[目次へ戻る](./README.md)
