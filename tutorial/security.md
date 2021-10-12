@@ -1,35 +1,40 @@
 ## セキュリティ
 
 ### ユーザーの作成
-ユーザーは、TravelサンプルWebアプリを介して作成されます。ユーザーが作成されると、対応するユーザープロファイルドキュメントがユーザーに関連付けられたCouchbaseServerに作成されます。さらに、Webアプリは、SyncGatewayユーザー管理RESTエンドポイントを介してユーザーをSyncGatewayに自動的に登録します。注：Sync Gatewayユーザーは、Sync Gatewayで複製することが認証されているユーザーに対応し、CouchbaseServerで作成されたRBACユーザーとは異なります。
+ユーザーは、TravelサンプルWebアプリを介して作成されます。ユーザーが作成されると、対応するユーザープロファイルドキュメントがユーザーに関連付けられたCouchbase　Serverに作成されます。さらに、Webアプリは、Sync　Gatewayユーザー管理RESTエンドポイントを介してユーザーをSync　Gatewayに自動的に登録します。
 
-#### 試してみる（Webアプリ）
-ブラウザでTravelWeb AppURLにアクセスします。Webアプリを手動またはDockerコンテナー経由でインストールした場合、このURLはhttp：// localhost：8080になります。クラウドインストールを使用した場合は、Webアプリのクラウドインスタンスにアクセスしてください。
+注：Sync Gatewayユーザーは、Sync Gatewayで複製することが認証されているユーザーに対応し、CouchbaseServerで作成されたRBACユーザーとは異なります。
 
-ユーザー名に「demo」、パスワードに「password」を入力して、新しいユーザーを作成します。「登録」ボタンをクリックしてください
+#### やってみよう（Webアプリ）
 
-Webアプリにログインする必要があります。ユーザーのために何も作成されるべきではありません。
+- ブラウザでTrave　lWeb App　URLにアクセスします。Webアプリを手動またはDockerコンテナー経由でインストールした場合、このURLはhttp：//localhost：8080になります。クラウドインストールを使用した場合は、Webアプリのクラウドインスタンスにアクセスしてください。
 
-Webユーザーのサインアップ
-#### 試してみてください（Couchbase Server）
+- ユーザー名に「demo」、パスワードに「password」を入力して、新しいユーザーを作成します。「登録」ボタンをクリックしてください
 
-- ブラウザでCouchbaseServerのURLにアクセスします。サーバーを手動またはDockerコンテナー経由でインストールした場合、このURLはhttp：// localhost：8091になります。クラウドインストールを使用した場合は、サーバーのクラウドインスタンスにアクセスしてください。
+- Webアプリにログインする必要があります。ユーザーのために何も作成されるべきではありません。
 
-- CouchbaseServerのインストール中に設定した管理者の資格情報を使用してログインします。
+![](https://raw.githubusercontent.com/couchbaselabs/mobile-travel-sample/master/content/assets/web_user_signup.gif)
 
-- 左側のナビゲーションペインで[バケット]を選択します。
+#### やってみよう（Couchbase Server）
 
-- 「ドキュメントID」というラベルの付いたボックスに、「user :: demo」と入力します（注：コロンは2つあります）。
+- ブラウザでCouchbase　ServerのURLにアクセスします。サーバーを手動またはDockerコンテナー経由でインストールした場合、このURLはhttp：// localhost：8091になります。クラウドインストールを使用した場合は、サーバーのクラウドインスタンスにアクセスしてください。
+
+- Couchbase　Serverのインストール中に設定した管理者の資格情報を使用してログインします。
+
+- 左側のナビゲーションペインで「Buckets」を選択します。
+
+- 「ドキュメントID」というラベルの付いたボックスに、「user::demo」と入力します（注：コロンは2つあります）。
 
 - Webアプリを介してサインアップしたときに作成されたユーザードキュメントが表示されます。
 
-- 表示される「ユーザー名」が「デモ」であることを確認してください
+- 表示される「ユーザー名」が「demo」であることを確認してください
 
-cbユーザー認証
+![](https://raw.githubusercontent.com/couchbaselabs/mobile-travel-sample/master/content/assets/cb_user_auth.gif)
+
 - 次に、IDが「_sync：user：demo」のドキュメントを探します。これは、ユーザーを登録するときにSyncGatewayによって作成されるドキュメントです。
 
 ### アクセス制御
-このレッスンでは、安全なWebゲートウェイであるSyncGatewayを紹介します。
+このレッスンでは、セキュアなWebゲートウェイであるSync　Gatewayを紹介します。
 
 Couchbase Sync Gatewayは、以下を提供するWebインターフェイスを公開するインターネット向けの同期メカニズムです。
 
@@ -43,7 +48,9 @@ Couchbase Sync Gatewayは、以下を提供するWebインターフェイスを�
 
 https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-config-travelsample.jsonにあるsync-gateway-config-travelsample.jsonファイルを開きます。
 
-このusersセクションでは、同期ゲートウェイを使用してレプリケートするためのアクセスを許可されている同期ゲートウェイユーザーのハードコードされたリストを定義します。ユーザーのリストをハードコーディングすることは、「ユーザーの作成」セクションで説明されているように、SyncGatewayユーザーを動的に作成する代わりの方法です。設定ファイルには、「*」チャネルへのアクセスが許可された「password」のパスワードを持つ「admin」という名前のハードコードされたユーザーがいます。
+この`users`セクションでは、Sync　Gatewayを使用してレプリケートするためのアクセスを許可されているSync　Gatewayユーザーのハードコードされたリストを定義します。
+ユーザーのリストをハードコーディングすることは、「ユーザーの作成」セクションで説明されているように、Sync　Gatewayユーザーを動的に作成する代わりの方法です。
+設定ファイルには、「*」チャネルへのアクセスが許可された「password」のパスワードを持つ「admin」という名前のハードコードされたユーザーがいます。
 
 ```JAVASCRIPT
 "users": {
@@ -62,18 +69,22 @@ https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-c
 ```
 
 #### やってみよう
-ターミナルで次のコマンドを実行します。クラウドベースのインストールを行った場合は、localhost以下のコマンドでSyncGatewayのクラウドインスタンスのIPアドレスに置き換えてください。
+
+- ターミナルで次のコマンドを実行します。（ローカルホスト以外のインストールを行った場合は、コマンドの「localhost」の部分をSync GatewayをホストするサーバーのIPアドレスに置き換えてください)
 
 ```BASH
 curl -X GET http://localhost:4984/travel-sample/
 ```
 
-サーバーから「Unauthorized」エラーが表示されることを確認します
+- サーバーから「Unauthorized」エラーが表示されることを確認します
 
-youtターミナルで次のコマンドを実行します。authorizationヘッダは「：パスワードデモ」のbase64でエンコードされた値です。クラウドベースのインストールを行った場合は、localhost以下のコマンドでSyncGatewayのクラウドインスタンスのIPアドレスに置き換えてください。
+- youtターミナルで次のコマンドを実行します。`authorization`ヘッダは「demo:password」(<ユーザー名>:<パスワード>)のbase64でエンコードされた値です。
+（ローカルホスト以外のインストールを行った場合は、コマンドの「localhost」の部分をSync GatewayをホストするサーバーのIPアドレスに置き換えてください)
 
 ```BASH
 curl -X GET http://localhost:4984/travel-sample/ -H 'authorization: Basic ZGVtbzpwYXNzd29yZA=='
 ```
 
-「travel-sample」データベースの詳細が表示され、「state」が「online」であることを確認します
+- 「travel-sample」データベースの詳細が表示され、「state」が「online」であることを確認します
+
+[目次へ戻る](./README.md)
