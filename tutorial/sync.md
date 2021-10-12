@@ -14,9 +14,10 @@ Sync Gatewayはチャネルを使用して、多数のユーザー間でデー�
 
 - デバイスに同期されるデータの量を最小限に抑えます。
 
-で同期Gatewayインストールのセクション、我々は特定の設定ファイルと同期ゲートウェイを起動する手順を説明しました。
+Sync Gatewayインストールのセクションで、我々は特定の設定ファイルとSync Gatewayを起動する手順を説明しました。
 
-`https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-config-travelsample.json`にある`sync-gateway-config-travelsample.json`ファイルを開きます。これには、sync functionソースコードがSync Gatewayのデータベース構成ファイルに保存されているJavaScript関数が含まれています。
+`https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-config-travelsample.json`にある`sync-gateway-config-travelsample.json`ファイルを開きます。
+これには、sync functionソースコードがSync Gatewayのデータベース構成ファイルに保存されているJavaScript関数が含まれています。
 
 ```JAVASCRIPT
 /* Routing */
@@ -29,10 +30,11 @@ channel("channel." + username);
 
 Sync Gateway1.5およびCouchbaseServer 5.0以降、モバイルアプリケーションとサーバー/ Webアプリケーションは同じバケットに対して読み取りと書き込みを行うことができるようになりました。これは、Sync　Gateway構成ファイルで有効にできるオプトイン機能です。
 
-収束
-1.5より前は、モバイルクライアントとのレプリケーションにSync Gatewayで使用される同期メタデータは、_syncプロパティの一部としてドキュメントに含まれていました。1.5では、同期メタデータは、ドキュメントに関連付けられた拡張属性またはXAttrsに移動されます。
+![](https://raw.githubusercontent.com/couchbaselabs/mobile-travel-sample/master/content/assets/convergence.png)
 
-この機能は、同期ゲートウェイ構成ファイルの構成設定を通じて有効にできます。Sync Gateway2.7のEnterpriseEditionを使用している場合、「`import_docs`」フラグはオプションであることに注意してください。「`enable_shared_bucket_access`」が「`true`」に設定されているすべてのノードは、サーバーバケットからドキュメントの変更を自動的にインポートします。
+1.5より前は、モバイルクライアントとのレプリケーションにSync Gatewayで使用される同期メタデータは、`_sync`プロパティの一部としてドキュメントに含まれていました。1.5では、同期メタデータは、ドキュメントに関連付けられた拡張属性またはXAttrsに移動されています。
+
+この機能は、同期ゲートウェイ構成ファイルの構成設定を通じて有効にできます。Sync Gateway2.7のEnterprise Editionを使用している場合、「`import_docs`」フラグはオプションであることに注意してください。「`enable_shared_bucket_access`」が「`true`」に設定されているすべてのノードは、サーバーバケットからドキュメントの変更を自動的にインポートします。
 
 https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-config-travelsample.jsonにあるsync-gateway-config-travelsample.jsonファイルを開きます
 
@@ -41,7 +43,7 @@ https://github.com/couchbaselabs/mobile-travel-sample/blob/master/sync-gateway-c
 "enable_shared_bucket_access": true
 ```
 
-インポートフィルター機能を定義することにより、Sync Gatewayでインポートおよび処理する必要のあるCouch baseServerドキュメントを指定できます。このデモでは、「user」ドキュメントのみを同期します。したがって、他のすべてのドキュメントタイプは無視されます。
+インポートフィルター機能を定義することにより、Sync Gatewayでインポートおよび処理する必要のあるCouchbase Serverドキュメントを指定できます。このデモでは、「user」ドキュメントのみを同期します。したがって、他のすべてのドキュメントタイプは無視されます。
 
 ```JAVASCRIPT
 function(doc) {
@@ -58,21 +60,22 @@ function(doc) {
 ```
 
 ### レプリケーション
+
 レプリケーションは、Couchbase Liteを実行しているクライアントがデータベースの変更をリモート（サーバー）データベースと同期するプロセスです。
 
-プルレプリケーションは、Couchbase Liteダウンロードデータベースを実行しているクライアントがリモート（サーバー）ソースデータベースからローカルターゲットデータベースに変更するプロセスです。
+- プルレプリケーションは、Couchbase Liteダウンロードデータベースを実行しているクライアントがリモート（サーバー）ソースデータベースからローカルターゲットデータベースに変更するプロセスです。
 
-プッシュレプリケーションは、Couchbase Liteアップロードデータベースを実行しているクライアントが、ローカルソースデータベースからリモート（サーバー）ターゲットデータベースに変更するプロセスです。
+- プッシュレプリケーションは、Couchbase Liteアップロードデータベースを実行しているクライアントが、ローカルソースデータベースからリモート（サーバー）ターゲットデータベースに変更するプロセスです。
 
 Couchbase Mobile 2.xレプリケーションプロトコルは、WebSocket上に階層化されたメッセージングプロトコルとして実装されます。
 
-レプリケーション20
+![](https://raw.githubusercontent.com/couchbaselabs/mobile-travel-sample/master/content/assets/replication-2-0.png)
 
-レプリケーションプロセスは、「`continuous`(継続的)」または「ワンショット」にすることができます。
+レプリケーションプロセスは、「`continuous`(継続的)」または「`one shot`(ワンショット)」にすることができます。
 
-「継続的」レプリケーションモードでは、変更はクライアントと同期ゲートウェイの間でリアルタイムで継続的に同期されます。
+- 「継続的」レプリケーションモードでは、変更はクライアントと同期ゲートウェイの間でリアルタイムで継続的に同期されます。
 
-「ワンショット」モードでは、変更が1回同期され、クライアントとサーバー間の接続が切断されます。将来の変更をプッシュアップまたはプルダウンする必要がある場合、クライアントは新しいレプリケーションを開始する必要があります。
+- 「ワンショット」モードでは、変更が1回同期され、クライアントとサーバー間の接続が切断されます。将来の変更をプッシュアップまたはプルダウンする必要がある場合、クライアントは新しいレプリケーションを開始する必要があります。
 
 `app/src/android/java/…/util/DatabaseManager.java`ファイルを開きます。
 `startPushAndPullReplicationForCurrentUser(String username, String password)`メソッドを確認します。
@@ -85,7 +88,7 @@ public static void startPushAndPullReplicationForCurrentUser(String username, St
 }
 ```
 
-まず、URを指定してL同期するSyncGatewayインスタンスを指すオブジェクトを初期化します。
+まず、URLを指定して同期するSync Gatewayインスタンスを指すオブジェクトを初期化します。
 
 ```JAVA
 public static String mSyncGatewayEndpoint = "ws://10.0.2.2:4984/travel-sample";
@@ -145,7 +148,7 @@ public void changed(ReplicatorChange change) {
 replicator.start();
 ```
 
-### 試してみてください（プッシュレプリケーション）
+### やってみよう（プッシュレプリケーション）
 - Travel Sample Mobileアプリに「demo」ユーザーとしてログインし、パスワードを「password」としてログインします。このユーザーは、旅行サンプルWebバックエンドを介して作成する必要があります。
 
 - 「航空会社」ボタンをタップして、フライトを予約します。「出発地」と「目的地」の両方の空港とフライト日はすでに設定されています。
@@ -164,7 +167,7 @@ replicator.start();
 - モバイルアプリで予約したフライトがウェブアプリのフライトリストに表示されていることを確認します
 
 
-### 試してみてください（プルレプリケーション）
+### やってみよう（プルレプリケーション）
 - Travel Sample PythonWebアプリにアクセスします（URLはhttp：//localhost：8080）。クラウドベースのインストールを行った場合localhostは、URLをWebアプリのクラウドインスタンスのIPアドレスに置き換えてください。
 
 - パスワードを「password」として、「demo」ユーザーとしてWebアプリにログインします。
@@ -179,13 +182,16 @@ replicator.start();
 
 - 「検索」ボタンをクリックしてください
 
-- フライトのリストから、対応する[バスケットに追加]ボタンをクリックして、最初のフライトリストを選択します
+- フライトのリストから、対応する「Add to Basket」ボタンをクリックして、最初のフライトリストを選択します
 
-- 「バスケット」タブをクリックしてフライトの選択を表示し、「購入」ボタンをクリックして予約を確認します
+- 「Basket」タブをクリックしてフライトの選択を表示し、「購入」ボタンをクリックして予約を確認します
 
-- [予約済み]タブには、確認済みのフライト予約が表示されます
+- 「Booked」タブには、確認済みのフライト予約が表示されます
 
+![](https://raw.githubusercontent.com/couchbaselabs/mobile-travel-sample/master/content/assets/travel-app-pull.gif)
 
 - Travel Sample Mobileアプリに「デモ」ユーザーとしてログインし、パスワードを「パスワード」としてログインします
 
 - モバイルアプリのフライトリストに、ウェブアプリで予約したフライトが表示されていることを確認します
+
+[目次へ戻る](./README.md)
