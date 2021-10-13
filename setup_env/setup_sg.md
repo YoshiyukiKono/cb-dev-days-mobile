@@ -9,21 +9,26 @@ $ docker network ls
 $ docker network create -d bridge workshop
 ```
 
+## Dockerイメージ取得
+
 コンテナーでアプリケーションを実行するには、最初にDockerCloudからDockerイメージを取得します。
 
 ```BASH
 $ docker pull couchbase/sync-gateway:2.8.0-enterprise
 ```
 
-Sync Gatewayはsync-gateway-config-travelsample.json、WorkshopRepoステップの一部としてダウンロードする必要があるという名前の構成ファイルを使用して起動する必要があります。設定ファイルは/path/to/mobile-travel-sampleディレクトリ/フォルダにあります。
+## Sync Gateway構成ファイルの編集
 
-sync-gateway-config-travelsample.json任意のテキストエディタを使用してファイルを開きます
+Sync Gatewayはsync-gateway-config-travelsample.json、WorkshopRepoステップの一部としてダウンロードする必要があるという名前の構成ファイルを使用して起動します。
+設定ファイルは/path/to/mobile-travel-sampleディレクトリにあります。
 
-アプリがCouchbaseServerに接続するには、サーバーのアドレスを指定する必要があります。Couchbase Server Dockerコンテナを起動したときにname、「cb-server」を指定したことに注意してください。
+任意のテキストエディタを使用してsync-gateway-config-travelsample.jsonを開きます
 
-ファイルをに置き換えlocalhostて保存します。`sync-gateway-config-travelsample.json`cb-server
+アプリがCouchbaseServerに接続するには、サーバーのアドレスを指定する必要があります。
+Couchbase Server Dockerコンテナを起動したときにname、「cb-server」を指定したことに注意してください。
 
-+
+「localhost」を「cb-server」に置き換えてファイル保存します。
+
 
 ```JSON
 "server": "couchbase://cb-server"
@@ -32,19 +37,31 @@ sync-gateway-config-travelsample.json任意のテキストエディタを使用�
 `sync-gateway-config-travelsample.json`ファイルを使用してSync Gatewayを起動します。
 `sync-gateway-config-travelsample.json`ファイルが含まれているフォルダから以下のコマンドを実行する必要があります。
 
-### ウィンドウズ
+## Dockerコンテナの起動
+
+### Windowsでの実行方法
 
 ```BASH
 cd /path/to/mobile-travel-sample/
 docker run -p 4984-4985:4984-4985 --network workshop --name sync-gateway -d -v %cd%/sync-gateway-config-travelsample.json:/etc/sync_gateway/sync_gateway.json couchbase/sync-gateway:2.8.0-enterprise -adminInterface :4985 /etc/sync_gateway/sync_gateway.json
 ```
 
-### Windows以外のプラットフォーム
+### Windows以外のプラットフォームでの実行方法
 
 ```BASH
 $ cd c:\path\to\mobile-travel-sample\
 $ docker run -p 4984-4985:4984-4985 --network workshop --name sync-gateway -d -v `pwd`/sync-gateway-config-travelsample.json:/etc/sync_gateway/sync_gateway.json couchbase/sync-gateway:2.8.0-enterprise -adminInterface :4985 /etc/sync_gateway/sync_gateway.json
 ```
+
+## Dockerプロセス確認
+
+ターミナルウィンドウで次のコマンドを使用して、「sync-gateway」という名前のDockerコンテナが実行されていることを確認します。
+
+```BASH
+$ docker ps
+　```
+ 
+## 起動ログ確認
 
 次のコマンドを実行すると、いつでもログを表示できます。
 
@@ -52,14 +69,10 @@ $ docker run -p 4984-4985:4984-4985 --network workshop --name sync-gateway -d -v
 $ docker logs sync-gateway
 ```
 
-ターミナルウィンドウで次のコマンドを使用して、「sync-gateway」という名前のDockerコンテナが実行されていることを確認します。
-
-```BASH
-$ docker ps
-　```
-
 ### やってみよう
-http://127.0.0.1:4984ブラウザでこのURLにアクセスします
+ブラウザで下記のURLにアクセスします
+
+http://127.0.0.1:4984
 
 以下のようなJSON応答が返されることを確認します
 
