@@ -46,7 +46,7 @@ $ docker logs cb-server
 
 ### やってみよう
 
-- 「http：//localhost：8091」（または「http：//127.0.0.1：8091」）を開いて、CouchbaseServerのWeb管理コンソールを開きます。
+- CouchbaseServerのWeb管理コンソールを開きます（URLは、「　http://localhost:8091　」です）。
 
 - ユーザー名を「Administrator」、パスワードを「password」としてコンソールにログインします
 
