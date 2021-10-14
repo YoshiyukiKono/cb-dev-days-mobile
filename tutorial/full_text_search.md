@@ -1,15 +1,19 @@
 ## 全文検索
-### 全文検索
+
+### 概要
 Couchbase Lite 2.0は、全文検索（FTS）をサポートするようになりました。FTSは、`match`クエリを使用して実行されます。
-FTSの一致はケースセンシティブです。旅行アプリでは、FTSクエリは、アプリで事前に作成されたローカルの「travel-sample」ドキュメントに対して行われます。
+FTSの一致はケースセンシティブです。
+
+Tracelアプリでは、FTSクエリは、アプリで事前に作成されたローカルの「travel-sample」データベースのドキュメントに対して行われます。
+
+### インデックス作成
 
 FTSクエリを実行するには、FTSインデックスを作成する必要があります。
 
-`app/src/android/java/…/util/DatabaseManager.java`ファイルを開きます。
-`createFTSQueryIndex()`メソッドを確認します。
-このコードスニペットは、`description`という名前のプロパティにFTSインデックスを作成します。
+`app/src/android/java/…/util/DatabaseManager.java`ファイルを開きます。`createFTSQueryIndex()`メソッドを確認します。
 
-`DatabaseManager.java`
+以下のコードスニペットは、`description`という名前のプロパティにFTSインデックスを作成します。
+
 
 ```JAVA
 private void createFTSQueryIndex() {
@@ -64,7 +68,7 @@ Query hotelSearchQuery = QueryBuilder
 );
 ```
 
-上記のさまざまな式を使用してクエリを作成`ResultSetし、List<Map<String, Object>>`オブジェクトをに渡されるオブジェクトに変換します`RecyclerView`。
+上記のクエリを実行し、結果（`ResultSet`）を`mHotelView`オブジェクトに渡される`List<Map<String, Object>>`オブジェクトに変換します。
 
 ```JAVA
 ResultSet rows = null;
@@ -89,8 +93,8 @@ mHotelView.showHotels(data);
 ### やってみよう
 - Travel Sample Mobileアプリに「demo」ユーザーとしてログインし、パスワードを「password」としてログインします
 - 「ホテル」ボタンをタップします
-- 説明テキストフィールドに「pet」と入力します。
-- [場所]テキストフィールドに「London」と入力します
+- 「説明」テキストフィールドに「pet」と入力します。
+- 「場所]」テキストフィールドに「London」と入力します
 - 「Novotel London West」という名前のホテルが1つリストされていることを確認します
 
 ![](https://cl.ly/3r243s1K2600/android-advanced-query.gif)
