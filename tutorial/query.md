@@ -1,8 +1,11 @@
 ## クエリ
 ### 概要
 Couchbase Liteでは、データベースに対するクエリを利用することができます。
+
 クエリの構造は、SQLに類似しています。ただし、モバイルアプリケーションという性格上、クエリは文字列で表現するのではなく、オブジェクトとして構築します。
-そのために、ビルダークラス（`QueryBuilder`）を使用します。
+クエリの構築には、ビルダークラス（`QueryBuilder`）を使用します。
+
+注：一般に、クエリが文字列として扱われる場合には、文字列を解析して実行するための機能を持つか、プログラミング言語のコンパイラーがソースコードを解析する前に、クエリ文字列をプログラム言語に書き換える（プリコンパイルする）必要があります。モバイルアプリが前者の機能をカバーすることは、フットプリント(アプリのサイズ)を考えると不適切であることがわかります。後者の機能は、提供されていません。
 
 Couchbase Lite 2.0のクエリインターフェイスには、以下の機能が含まれています
 
@@ -14,7 +17,7 @@ Couchbase Lite 2.0のクエリインターフェイスには、以下の機能�
 - グループ化
 - 結合（単一のデータベース内）
 - 並べ替え
-- NilOrMissingプロパティ
+- `NilOrMissing`プロパティ
 
 ### 単純なクエリ
 Travel Sampleアプリには、データベースにクエリを実行している箇所が多数あります。ここでは簡単な例について説明します。
@@ -28,7 +31,7 @@ public void startsWith(String prefix, String tag) {
 }
 ```
 
-以下のクエリは、データベースから、`type`プロパティが`airport`と等しく、「`airportname`」プロパティが検索語と等しい、ドキュメント内「`airportname`」プロパティを取得しています。
+以下のクエリは、データベースから、`type`プロパティが`airport`と等しく、`airportname`プロパティが検索語と等しい、ドキュメントの`airportname`プロパティを取得しています。
 
 ```java
 Database database = DatabaseManager.getDatabase();
@@ -41,7 +44,7 @@ Query searchQuery = QueryBuilder
 );
 ```
 
-次に、execute()メソッドを使用してクエリが実行されます。結果の各行には、「airportname」と呼ばれる単一のプロパティが含まれます。最終結果はshowAirports、結果がに表示されるメソッドに渡されRecyclerViewます。
+次に、execute()メソッドを使用してクエリが実行されます。結果の各行には、`airportname`と呼ばれるプロパティの値が含まれます。最終結果は、結果表示のために`mSearchView`の`showAirports`メソッドに渡されます。
 
 ```java
 ResultSet rows = null;
@@ -64,15 +67,15 @@ mSearchView.showAirports(data, tag);
 - Travel Sampleモバイルアプリに「demo」ユーザーとしてログインし、パスワードを「password」としてログインします
 - 「フライト」ボタンをタップしてフライトを予約します
 - 「From」空港のテキストフィールドに「Detroit」と入力します
-- ドロップダウンリストの最初の項目が「DetroitMetroWayneCo」であることを確認します
+- ドロップダウンリストの最初の項目が「Detroit　Metro　Wayne　Co」であることを確認します
 
 ![](https://cl.ly/0b3q2T2t1R1J/android-simple-query.gif)
 
 ### 高度なクエリ
   
-このセクションでは、JOINクエリについて説明します。Couchbase Lite 2.0のJOINクエリは、データベース内の結合です。
+このセクションでは、JOINクエリについて説明します。JOINクエリは、データベース内の複数のドキュメントを結合します。
 
-「データモデリング」セクションを思い出すと、「bookmarkedhotels」に等しいタイプのドキュメントには、ブックマークされたホテルのIDの配列であるhotelsプロパティが含まれています。
+「bookmarkedhotels」タイプのドキュメントには、ブックマークされたホテルのIDの配列であるhotelsプロパティが含まれています。
 
 ```
 {
@@ -87,7 +90,7 @@ mSearchView.showAirports(data, tag);
 }
 ```
 
-\_idタイプ「bookmarkedhotels」のドキュメントの「hotels」プロパティ配列に含まれているドキュメントをフェッチするクエリを確認します。
+`bookmarkedhotels`ドキュメントの`hotels`プロパティ配列に含まれているドキュメントをフェッチするクエリを確認します。
 
 `app/src/android/java/…/hotes/BookmarksPresenter.java`ファイルを開きます。`fetchBookmarks()`メソッドを確認します。
 
@@ -106,21 +109,21 @@ DataSource bookmarkDS = DataSource.database(database).as("bookmarkDS");
 DataSource hotelsDS = DataSource.database(database).as("hotelDS");
 ```
 
-次に、クエリ式を記述します。1つ目は、hotelsブックマークデータソースのプロパティを取得します。秒は、ホテルのデータソースのドキュメントIDを取得します。
+次に、クエリ式を記述します。1行目は、`bookmark`データソースのプロパティ`hotels`を取得します。２行目で、`hotel`データソースのドキュメントIDを取得します。
 
 ```java
 Expression hotelsExpr = Expression.property("hotels").from("bookmarkDS");
 Expression hotelIdExpr = Meta.id.from("hotelDS");
 ```
 
-次に、関数式を使用して、`_id`プロパティが`hotels`配列内にあるドキュメントを検索します。そして、結合式を作成します。
+次に、`ArrayFunction`関数式を使用して、`_id`プロパティが`hotels`配列内に含まれるドキュメントを検索します。そして、結合式を作成します。
 
 ```java
 Expression joinExpr = ArrayFunction.contains(hotelsExpr, hotelIdExpr);
 Join join = Join.join(hotelsDS).on(joinExpr);
 ```
 
-最後に、クエリオブジェクトはその結合式を使用して、ブックマークドキュメントの「hotels」配列で参照されているすべてのホテルドキュメントを検索します。
+最後に、クエリオブジェクトはその結合式を使用して、ブックマークドキュメントの`hotels`配列で参照されているすべてのホテルドキュメントを検索します。
 
 ```java
 Expression typeExpr = Expression.property("type").from("bookmarkDS");
@@ -167,8 +170,8 @@ try {
 
 - 「ゲストとして続行」を選択して、「guest」ユーザーとして旅行サンプルモバイルアプリにログインします
 - 「ホテル」ボタンをタップ
-- [場所]テキストフィールドに「ロンドン」と入力します
-- 「説明」テキストフィールドに「ペット」と入力します
+- 「場所」テキストフィールドに「London」と入力します
+- 「説明」テキストフィールドに「pets」と入力します
 - 「ノボテルロンドンウエスト」がリストされていることを確認します
 - タップしてホテルを「ブックマーク」します
 - ノボテルホテルが「BookmarksActivity」ページのリストに表示されていることを確認します
