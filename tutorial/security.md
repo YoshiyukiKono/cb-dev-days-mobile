@@ -5,21 +5,23 @@
 
 注：Sync Gatewayユーザーは、Sync Gatewayで複製することが認証されているユーザーに対応し、CouchbaseServerで作成されたRBACユーザーとは異なります。
 
+Tips: Syng Gatewayユーザーは、対象バケットのドキュメントとして管理されます。`_sync:user:<ユーザー名>`というキー/IDを持ちます（例：`_sync:user:demo`）。この演習で用いるアプリケーションでは、アプリケーションのユーザーとSync Gatewayのユーザーとして、同じ名前（とパスワード）を用いていますが、それぞれ異なるものです。Syng Gatewayユーザーは、同期の際のアクセス許可などのコントロールのために必要とされます。
+
 #### やってみよう（Webアプリ）
 
-- ブラウザでTrave　lWeb App　URLにアクセスします。Webアプリを手動またはDockerコンテナー経由でインストールした場合、このURLはhttp：//localhost：8080になります。クラウドインストールを使用した場合は、Webアプリのクラウドインスタンスにアクセスしてください。
+- ブラウザでTravel Web App　URLにアクセスします（Dockerコンテナーとして実行している場合、URLはhttp：//localhost：8080）。
 
-- ユーザー名に「demo」、パスワードに「password」を入力して、新しいユーザーを作成します。「登録」ボタンをクリックしてください
+- ユーザー名に「demo」、パスワードに「password」を入力して、新しいユーザーを作成します。「登録」ボタンをクリックしてください。
 
-- Webアプリにログインする必要があります。ユーザーのために何も作成されるべきではありません。
+- Webアプリにログインします。
 
 ![](https://raw.githubusercontent.com/couchbaselabs/mobile-travel-sample/master/content/assets/web_user_signup.gif)
 
 #### やってみよう（Couchbase Server）
 
-- ブラウザでCouchbase　ServerのURLにアクセスします。サーバーを手動またはDockerコンテナー経由でインストールした場合、このURLはhttp：// localhost：8091になります。クラウドインストールを使用した場合は、サーバーのクラウドインスタンスにアクセスしてください。
+- ブラウザでCouchbase　ServerのURLにアクセスします（Dockerコンテナーとして実行している場合、URLはhttp：//localhost：8091)。
 
-- Couchbase　Serverのインストール中に設定した管理者の資格情報を使用してログインします。
+- Couchbase　Serverのインストール中に設定した管理者アカウントを使用してログインします。
 
 - 左側のナビゲーションペインで「Buckets」を選択します。
 
