@@ -1,17 +1,26 @@
 # Sync Gateway環境準備
 
-注：DockerコンテナーでSync Gatewayを実行している場合は、コンテナーでもCouchbaseServerが実行されていることを確認してください。そうでない場合は、Couchbase Server（上記）の指示に従ってサーバーコンテナをインストールしてください。
 
-「workshop」という名前のローカルDockerネットワークがまだ存在しない場合は、作成します。dockerを使用してCouchbaseサーバーをデプロイする手順に従った場合、これは当てはまらないはずです。ターミナルウィンドウを開き、次のコマンドを実行します。
+
+## Dockerネットワーク作成確認
+
+「workshop」という名前のローカルDockerネットワークが存在していることを確認します。
+
+ターミナルで、次のコマンドを実行します。
 
 ```BASH
 $ docker network ls
+```
+
+Dockerを使用してCouchbaseサーバーをデプロイする手順に従った場合、既に作成されているはずですが、まだ存在作成されていない場合は、作成します。
+
+```BASH
 $ docker network create -d bridge workshop
 ```
 
 ## Dockerイメージ取得
 
-コンテナーでアプリケーションを実行するには、最初にDockerCloudからDockerイメージを取得します。
+最初にDocker　CloudからDockerイメージを取得します。
 
 ```BASH
 $ docker pull couchbase/sync-gateway:2.8.0-enterprise
@@ -19,8 +28,11 @@ $ docker pull couchbase/sync-gateway:2.8.0-enterprise
 
 ## Sync Gateway構成ファイルの編集
 
-Sync Gatewayはsync-gateway-config-travelsample.json、WorkshopRepoステップの一部としてダウンロードする必要があるという名前の構成ファイルを使用して起動します。
-設定ファイルは/path/to/mobile-travel-sampleディレクトリにあります。
+このワークショップでは、Sync Gatewayはsync-gateway-config-travelsample.jsonいう名前の構成ファイルを使用して起動します。
+
+チュートリアル用のサンプリアプリケーションのリポジトリーをまだ入手していない場合は、はじめにリポジトリーを取得してください。
+
+設定ファイルは「mobile-travel-sample」ディレクトリ直下にあります。
 
 任意のテキストエディタを使用してsync-gateway-config-travelsample.jsonを開きます
 
@@ -34,10 +46,13 @@ Couchbase Server Dockerコンテナを起動したときにname、「cb-server�
 "server": "couchbase://cb-server"
 ```
 
-`sync-gateway-config-travelsample.json`ファイルを使用してSync Gatewayを起動します。
-`sync-gateway-config-travelsample.json`ファイルが含まれているフォルダから以下のコマンドを実行する必要があります。
+
 
 ## Dockerコンテナの起動
+
+sync-gateway-config-travelsample.jsonファイルを使用してSync Gatewayを起動します。
+
+sync-gateway-config-travelsample.jsonファイルが含まれているフォルダから以下のコマンドを実行します。
 
 ### Windowsでの実行方法
 
