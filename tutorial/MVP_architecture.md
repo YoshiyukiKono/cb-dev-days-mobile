@@ -24,3 +24,10 @@ Android Studioプロジェクトでは、コードは機能ごとに構造化さ
 
 
 [目次へ戻る](./README.md)
+
+
+# 参考情報
+
+https://github.com/android/architecture-samples/tree/todo-mvp
+
+https://tkhs0604.hatenablog.com/entry/android-architecture-patterns-3
