@@ -15,9 +15,9 @@ $ docker network create -d bridge workshop
 $ docker pull couchbase/server-sandbox:6.5.0
 ```
 
-## アプリケーション起動
+## Dockerコンテナ起動
 
-コマンドが完了すると、次の方法でアプリケーションを起動できます。
+次の方法でDockerコンテナを起動します。
 
 ```BASH
 $ docker run -d --name cb-server --network workshop -p 8091-8094:8091-8094 -p 11210:11210 couchbase/server-sandbox:6.5.0
