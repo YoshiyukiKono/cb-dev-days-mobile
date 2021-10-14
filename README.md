@@ -32,6 +32,20 @@
 
 演習では、基本的に、Android Javaを用いるものとします（実務との関係で他のプログラミング言語の利用を希望される場合は、[チュートリアル](https://docs.couchbase.com/tutorials/mobile-travel-sample/introduction.html)に基づいて実施することも可能です）。
 
+### 演習を始めるにあたって
+
+まず、はじめにチュートリアルで用いる、Travel Sampleアプリケーションのリポジトリーを取得します。
+
+このリポジトリーに含まれるSyng Gatewayの設定ファイルを環境構築で利用する必要があります。
+
+```
+git clone -b master --depth 1 https://github.com/couchbaselabs/mobile-travel-sample.git
+```
+
+（高速化のために、`--depth 1`として浅いプルを実行しています）
+
+
+
 ### Couchbase Server　/ Sync Gateway 環境構築
 
 本ワークショップでは、基本的には、ワークショップ終了後もご利用いただけるように、ご自身のローカル環境でCouchbase Serverを動作させる事を想定しています。
