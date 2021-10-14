@@ -1,8 +1,10 @@
 ## クエリ
 ### 概要
-Couchbase Lite 2.0には、クエリインターフェイスのようなN1QLのサポートが含まれています。データベースは、クエリビルダーを使用してクエリを作成し、そのクエリを実行することでクエリできます。
+Couchbase Liteでは、データベースに対するクエリを利用することができます。
+クエリの構造は、SQLに類似しています。ただし、モバイルアプリケーションという性格上、クエリは文字列で表現するのではなく、オブジェクトとして構築します。
+そのために、ビルダークラス（`QueryBuilder`）を使用します。
 
-Couchbase Lite 2.0のクエリインターフェイスは強力で、とりわけ以下のサポートが含まれています
+Couchbase Lite 2.0のクエリインターフェイスには、以下の機能が含まれています
 
 - パターンマッチング
 - 正規表現マッチング
@@ -15,11 +17,9 @@ Couchbase Lite 2.0のクエリインターフェイスは強力で、とりわ�
 - NilOrMissingプロパティ
 
 ### 単純なクエリ
-旅行アプリには、データベースにクエリを実行するインスタンスが多数あります。ここでは簡単な例について説明します。
+Travel Sampleアプリには、データベースにクエリを実行している箇所が多数あります。ここでは簡単な例について説明します。
 
 `app/src/android/java/…/searchflight/SearchFlightPresenter.java`ファイルを開きます。`startsWith(String prefix, String tag)`メソッドを確認します。
-
-`SearchFlightPresenter.java`
 
 ```java
 @Override
@@ -28,7 +28,7 @@ public void startsWith(String prefix, String tag) {
 }
 ```
 
-以下のクエリは、データベースからドキュメント内の「name」プロパティを選択します。ここで、typeプロパティはairportと等しく、「airportname」プロパティは検索語と等しくなります。
+以下のクエリは、データベースから、`type`プロパティが`airport`と等しく、「`airportname`」プロパティが検索語と等しい、ドキュメント内「`airportname`」プロパティを取得しています。
 
 ```java
 Database database = DatabaseManager.getDatabase();
