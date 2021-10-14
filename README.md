@@ -50,7 +50,7 @@ git clone -b master --depth 1 https://github.com/couchbaselabs/mobile-travel-sam
 
 本ワークショップでは、基本的には、ワークショップ終了後もご利用いただけるように、ご自身のローカル環境でCouchbase Serverを動作させる事を想定しています。
 
-[こちら](./setup)の手順に従って、実行してください。
+[こちら](./setup_env)の手順に従って、実行してください。
 
 チュートリアル用に公開されている、Dockerによる自動セットアップを用いて、データやユーザーがセットアップ済みの環境を構築します。
 
