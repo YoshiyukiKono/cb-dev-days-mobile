@@ -1,4 +1,7 @@
 ## クエリ
+
+[オリジナル英文](https://docs.couchbase.com/tutorials/mobile-travel-sample/android/develop/query.html)
+
 ### 概要
 Couchbase Liteでは、データベースに対するクエリを利用することができます。
 
@@ -20,7 +23,7 @@ Couchbase Lite 2.0のクエリインターフェイスには、以下の機能�
 - `NilOrMissing`プロパティ
 
 ### 単純なクエリ
-Travel Sampleアプリには、データベースにクエリを実行している箇所が多数あります。ここでは簡単な例について説明します。
+Travelモバイルアプリには、データベースにクエリを実行している箇所が多数あります。ここでは簡単な例について説明します。
 
 `app/src/android/java/…/searchflight/SearchFlightPresenter.java`ファイルを開きます。`startsWith(String prefix, String tag)`メソッドを確認します。
 
@@ -65,17 +68,17 @@ mSearchView.showAirports(data, tag);
   
 ### やってみよう
 - Travel Sampleモバイルアプリに「demo」ユーザーとしてログインし、パスワードを「password」としてログインします
-- 「フライト」ボタンをタップしてフライトを予約します
-- 「From」空港のテキストフィールドに「Detroit」と入力します
+- 「Flights」ボタンをタップしてフライトを予約します
+- 「From（出発地）」空港のテキストフィールドに「Detroit」と入力します
 - ドロップダウンリストの最初の項目が「Detroit　Metro　Wayne　Co」であることを確認します
 
 ![](https://cl.ly/0b3q2T2t1R1J/android-simple-query.gif)
 
 ### 高度なクエリ
   
-このセクションでは、JOINクエリについて説明します。JOINクエリは、データベース内の複数のドキュメントを結合します。
+ここでは、JOINクエリについて説明します。JOINクエリは、データベース内の複数のドキュメントを結合します。
 
-「bookmarkedhotels」タイプのドキュメントには、ブックマークされたホテルのIDの配列であるhotelsプロパティが含まれています。
+`bookmarkedhotels`タイプのドキュメントには、ブックマークされたホテルのIDの配列である`hotels`プロパティが含まれています。
 
 ```
 {
@@ -138,7 +141,7 @@ Query query = QueryBuilder
   .where(typeExpr.equalTo(Expression.string("bookmarkedhotels")));
 ```
 
-この`execute()`メソッドを使用して結果を取得し、ビューに渡します。
+`execute()`メソッドを使用して結果を取得し、ビューに渡します。
 
 ```java
 query.addChangeListener(new QueryChangeListener() {
@@ -168,13 +171,13 @@ try {
 
 ### やってみよう
 
-- 「ゲストとして続行」を選択して、「guest」ユーザーとして旅行サンプルモバイルアプリにログインします
-- 「ホテル」ボタンをタップ
-- 「場所」テキストフィールドに「London」と入力します
-- 「説明」テキストフィールドに「pets」と入力します
-- 「ノボテルロンドンウエスト」がリストされていることを確認します
-- タップしてホテルを「ブックマーク」します
-- ノボテルホテルが「BookmarksActivity」ページのリストに表示されていることを確認します
+- 「Proceed as Guest」を選択して、「guest」ユーザーとしてTravelモバイルアプリにログインします
+- 「Hotels」ボタンをタップします
+- 「Location」テキストフィールドに「London」と入力します
+- 「Description」テキストフィールドに「pets」と入力します
+- 「Novotel London West」がリストされていることを確認します
+- ホテルをタップしてブックマークします
+- Novotelホテルが「BookmarksActivity」ページのリストに表示されていることを確認します
 
 ![](https://cl.ly/3r243s1K2600/android-advanced-query.gif)
 
