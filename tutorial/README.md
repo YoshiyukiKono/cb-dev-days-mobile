@@ -18,6 +18,6 @@ Andoroidエミュレーターの場合、ローカルホストへの接続に用
 1. [データベース操作の基本](basics.md)
 1. [セキュリティ](security.md)
 1. [Couchbase Serverとの同期](sync.md)
-1. [プレビルドデータベースの利用](pre-built_database.md)
+1. [構築済みデータベース](pre-built_database.md)
 1. [クエリ](query.md)
 1. [全文検索](full_text_search.md)
