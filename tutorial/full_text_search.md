@@ -1,10 +1,12 @@
 ## 全文検索
 
+[オリジナル英文](https://docs.couchbase.com/tutorials/mobile-travel-sample/android/develop/full-text-search.html)
+
 ### 概要
 Couchbase Lite 2.0は、全文検索（FTS）をサポートするようになりました。FTSは、`match`クエリを使用して実行されます。
 FTSの一致はケースセンシティブです。
 
-Tracelアプリでは、FTSクエリは、アプリで事前に作成されたローカルの「travel-sample」データベースのドキュメントに対して行われます。
+Travelモバイルアプリでは、FTSクエリは、アプリのローカルの事前構築済み「travel-sample」データベースのドキュメントに対して行われます。
 
 ### インデックス作成
 
@@ -12,7 +14,7 @@ FTSクエリを実行するには、FTSインデックスを作成する必要�
 
 `app/src/android/java/…/util/DatabaseManager.java`ファイルを開きます。`createFTSQueryIndex()`メソッドを確認します。
 
-以下のコードスニペットは、`description`という名前のプロパティにFTSインデックスを作成します。
+以下のコードは、`description`という名前のプロパティにFTSインデックスを作成します。
 
 
 ```JAVA
@@ -46,7 +48,7 @@ Database database = DatabaseManager.getDatabase();
 
 次に、`match()`オペレーターを使って、`FullTextExpression`を作成します。この例では、`match`式は`description`プロパティ内の値から`desciptionStr`を検索します。
 この`match`式は、`country`、`city`、`state`または`address`プロパティから、`location`を探す`like`比較式と、論理的に`AND`で結合されます。
-この式は、通常の方法でクエリの`where`句で使用されます。
+この式は、クエリの`where`句で使用されます。
 
 ```JAVA
 Expression descExp = FullTextExpression.index("descFTSIndex").match(description) ;
@@ -91,10 +93,10 @@ mHotelView.showHotels(data);
 ```
 
 ### やってみよう
-- Travel Sample Mobileアプリに「demo」ユーザーとしてログインし、パスワードを「password」としてログインします
-- 「ホテル」ボタンをタップします
-- 「説明」テキストフィールドに「pet」と入力します。
-- 「場所]」テキストフィールドに「London」と入力します
+- Travelモバイルアプリに「demo」ユーザーとしてログインし、パスワードを「password」としてログインします
+- 「hotels」ボタンをタップします
+- 「description」テキストフィールドに「pet」と入力します。
+- 「Location]」テキストフィールドに「London」と入力します
 - 「Novotel London West」という名前のホテルが1つリストされていることを確認します
 
 ![](https://cl.ly/3r243s1K2600/android-advanced-query.gif)
