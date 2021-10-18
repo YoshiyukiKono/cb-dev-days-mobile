@@ -1,5 +1,7 @@
 ## セキュリティ
 
+[オリジナル原文](https://docs.couchbase.com/tutorials/mobile-travel-sample/android/develop/security.html)
+
 ### ユーザーの作成
 ユーザーは、Travel　Webアプリを介して作成されます。ユーザーが作成されると、対応するユーザープロファイルドキュメントがユーザーに関連付けられたCouchbase　Serverに作成されます。さらに、Webアプリは、Sync　Gatewayユーザー管理RESTエンドポイントを介してユーザーをSync　Gatewayに自動的に登録します。
 
