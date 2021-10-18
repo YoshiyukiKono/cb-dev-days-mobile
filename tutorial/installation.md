@@ -52,7 +52,7 @@ public static String APPLICATION_ENDPOINT = "http://10.0.2.2:8080/api/";
 
 ![](https://cl.ly/1r0T100T0c22/as-build.png)
 
-- がエミュレーターにログイン画面表示されることを確認します。
+- エミュレーターにログイン画面が表示されることを確認します。
 
 ![](https://cl.ly/0T0G2S083g41/as-login.png)
 
