@@ -10,11 +10,11 @@
 - JDK 8
 
 #### Windowsユーザー：
-Windowsで開発している場合は、Windows10マシンを使用する必要があります。
+- Windows　10
 
 ## 旅行サンプルモバイルアプリ
 
-GitHubから「master」ブランチのクローンを作成します。クローン作成プロセスを高速化するために、`--depth 1`として浅いプルを実行しています。
+GitHubから「master」ブランチをクローンしたものを利用します。
 
 ```
 git clone -b master --depth 1 https://github.com/couchbaselabs/mobile-travel-sample.git
@@ -22,12 +22,12 @@ git clone -b master --depth 1 https://github.com/couchbaselabs/mobile-travel-sam
 
 Android　Studioを使用してプロジェクトを開きます。build.gradleは`mobile-travel-sample/android/TravelSample`にあります。
 
-### バックエンドに接続するようにアプリを構成する
+### バックエンド接続のためにアプリを構成する
 
 バックエンドに接続するには、アプリで指定されたURLを更新する必要があります。
 
 #### WebバックエンドURLの更新
-`util`フォルダー内の`DatabaseManager.java`ファイルを開きます。PythonWebサーバーを指す`APPLICATION_ENDPOINT`定数を更新する必要があります。
+`util`フォルダー内の`DatabaseManager.java`ファイルを開きます。Python Webサーバーを指す`APPLICATION_ENDPOINT`定数を更新する必要があります。
 
 ここで、指定するURLは、バックエンドをデプロイするために選択したインストールオプションによって異なります。以下はローカルホストに（Dockerまたは直接）インストールした例です。
 
@@ -49,6 +49,11 @@ public static String APPLICATION_ENDPOINT = "http://10.0.2.2:8080/api/";
 #### やってみよう
 
 - プロジェクトをビルドしてAndroidエミュレーターを使用して実行します。
-- ログイン画面がemuatorに表示されることを確認します。
+
+![](https://cl.ly/1r0T100T0c22/as-build.png)
+
+- がエミュレーターにログイン画面表示されることを確認します。
+
+![](https://cl.ly/0T0G2S083g41/as-login.png)
 
 [目次へ戻る](./README.md)
