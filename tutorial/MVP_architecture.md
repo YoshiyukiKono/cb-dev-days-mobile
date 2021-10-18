@@ -1,4 +1,7 @@
 ## MVPアーキテクチャ
+
+[オリジナル英文](https://docs.couchbase.com/tutorials/mobile-travel-sample/android/develop/mvp-architecture.html)
+
 ### 概要
 #### Model-View-Presenterパターン
 このアプリでは、MVPパターンに従い、アプリケーションのロジックを処理し、モデルとビューの間の導管として機能するプレゼンターを介して、内部データモデルを、パッシブビューから分離します。
