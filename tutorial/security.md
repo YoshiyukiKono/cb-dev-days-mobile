@@ -89,7 +89,8 @@ curl -X GET http://localhost:4984/travel-sample/
 - 今度は、ターミナルで次のコマンドを実行します。`authorization`ヘッダは「demo:password」(<ユーザー名>:<パスワード>)のbase64でエンコードされた値です。
 （ローカルホスト以外のインストールを行った場合は、コマンドの「localhost」の部分をSync GatewayをホストするサーバーのIPアドレスに置き換えてください)
 
-```BASH
+
+```
 curl -X GET http://localhost:4984/travel-sample/ -H 'authorization: Basic ZGVtbzpwYXNzd29yZA=='
 ```
 
