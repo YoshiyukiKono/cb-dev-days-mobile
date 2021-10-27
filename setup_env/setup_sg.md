@@ -76,7 +76,7 @@ $ docker run -p 4984-4985:4984-4985 --network workshop --name sync-gateway -d -v
 
 ```BASH
 $ docker ps
-　```
+```
  
 ## 起動ログ確認
 
