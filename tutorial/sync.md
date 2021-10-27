@@ -168,7 +168,7 @@ replicator.start();
 
 - フライトのリストから、最初のフライトリストを選択します。これにより、予約が行われます。
 
-- Travel Python Webアプリにアクセスします（URLは http：//localhost：8080）。必要に応じ、URLのIPアドレスを置き換えてください。
+- Travel Python Webアプリにアクセスします（URLは http://localhost:8080 ）。必要に応じ、URLのIPアドレスを置き換えてください。
 
 - 「demo」ユーザーとして、パスワードに「password」を使い、Webアプリにログインします。
 
@@ -178,7 +178,7 @@ replicator.start();
 
 
 ### やってみよう（プルレプリケーション）
-- Travel Python Webアプリにアクセスします（URLはhttp：//localhost：8080）。必要に応じ、URLのIPアドレスを置き換えてください。
+- Travel Python Webアプリにアクセスします（URLは http://localhost:8080 ）。必要に応じ、URLのIPアドレスを置き換えてください。
 
 - 「demo」ユーザーとして、パスワードに「password」を使い、Webアプリにログインします。
 
