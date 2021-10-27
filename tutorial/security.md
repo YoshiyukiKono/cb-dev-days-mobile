@@ -13,7 +13,7 @@ Tips: Syng Gatewayユーザー情報は、同期対象バケットの中のド�
 
 #### やってみよう（Webアプリ）
 
-- ブラウザでTravel Web App　URLにアクセスします。Dockerコンテナーとして実行している場合、URLは次の通りです。: http://localhost：8080
+- ブラウザでTravel Web App　URLにアクセスします。Dockerコンテナーとして実行している場合、URLは次の通りです。: http://localhost:8080
 
 - ユーザー名に「demo」、パスワードに「password」を入力して、新しいユーザーを作成します。「Register(登録)」ボタンをクリックしてください。
 
@@ -23,7 +23,7 @@ Tips: Syng Gatewayユーザー情報は、同期対象バケットの中のド�
 
 #### やってみよう（Couchbase Server）
 
-- ブラウザでCouchbase　ServerのURLにアクセスします。Dockerコンテナーとして実行している場合、URLは次の通りです。: http://localhost：8091
+- ブラウザでCouchbase　ServerのURLにアクセスします。Dockerコンテナーとして実行している場合、URLは次の通りです。: http://localhost:8091
 
 - Couchbase　Serverのインストール中に設定した管理者アカウントを使用してログインします。Dockerで構築した場合、ID/パスワードは、次の通りです。: Administrator/password
 
