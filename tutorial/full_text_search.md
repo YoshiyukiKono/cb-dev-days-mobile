@@ -2,6 +2,8 @@
 
 [オリジナル英文](https://docs.couchbase.com/tutorials/mobile-travel-sample/android/develop/full-text-search.html)
 
+**※ソースコードに関する解説は、プログラムと処理の関係を理解していただけるように、「確認のため」記載されています。この演習では、接続先の変更以外では、ソースコードを変更する必要はありません。演習として、「やってみよう」セクションのアプリケーションの操作をご実施ください。**
+
 ### 概要
 Couchbase Lite 2.0は、全文検索（FTS）をサポートするようになりました。FTSは、`match`クエリを使用して実行されます。
 FTSの一致はケースセンシティブです。
