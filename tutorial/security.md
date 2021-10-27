@@ -37,7 +37,7 @@ Tips: Syng Gatewayユーザー情報は、同期対象バケットの中のド�
 
 ![](https://raw.githubusercontent.com/couchbaselabs/mobile-travel-sample/master/content/assets/cb_user_auth.gif)
 
-- 次に、IDが「`_sync：user：demo`」のドキュメントを探します。これは、ユーザーを登録するときにSync Gatewayによって作成されるドキュメントです。
+- 次に、IDが「`_sync:user:demo`」のドキュメントを探します。これは、ユーザーを登録するときにSync Gatewayによって作成されるドキュメントです。
 
 ### アクセス制御
 
