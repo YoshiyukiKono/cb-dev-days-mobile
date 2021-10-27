@@ -86,14 +86,26 @@ curl -X GET http://localhost:4984/travel-sample/
 
 - サーバーから「Unauthorized」エラーが表示されることを確認します
 
-- 今度は、ターミナルで次のコマンドを実行します。`authorization`ヘッダは「demo:password」(<ユーザー名>:<パスワード>)のbase64でエンコードされた値です。
+- 今度は、ターミナルで次のコマンドを実行します。`authorization`ヘッダは「admin:password」(<ユーザー名>:<パスワード>)のbase64でエンコードされた値です。
 （ローカルホスト以外のインストールを行った場合は、コマンドの「localhost」の部分をSync GatewayをホストするサーバーのIPアドレスに置き換えてください)
 
+```
+curl -X GET http://localhost:4984/travel-sample/ -H 'authorization: Basic YWRtaW46cGFzc3dvcmQ='
+```
 
+参考として、「demo:password」(<ユーザー名>:<パスワード>)をbase64でエンコードされた値を用いる場合は以下の通りです。
 ```
 curl -X GET http://localhost:4984/travel-sample/ -H 'authorization: Basic ZGVtbzpwYXNzd29yZA=='
 ```
 
-- 「travel-sample」データベースの詳細が表示され、「state」が「online」であることを確認します
+例えば、以下のようなサイトを利用して、ご自身が設定した別の「<ユーザー名>:<パスワード>」を変換して利用することもできます。
+
+https://www.en-pc.jp/tech/base64.php
+
+- 「travel-sample」データベースの詳細が表示され、「state」が「online」であることを確認します。以下、実施例。
+
+```
+{"db_name":"travel-sample","update_seq":22,"committed_update_seq":22,"instance_start_time":1635318867148282,"compact_running":false,"purge_seq":0,"disk_format_version":0,"state":"Online","server_uuid":"caae24c476dcd2b7cac8465387fd482d"}
+```
 
 [目次へ戻る](./README.md)
